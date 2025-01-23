@@ -1,4 +1,5 @@
 from cryptography.fernet import Fernet
+from time import sleep
 
 def generate_key(key_name):
     key = Fernet.generate_key()
@@ -6,6 +7,8 @@ def generate_key(key_name):
     # string the key in a file
     with open(key_name, 'wb') as filekey:
         filekey.write(key)
+
+    return '[+] Key generated successfully! '
 
 
 def encrypt(filename, key):
@@ -29,7 +32,7 @@ def encrypt(filename, key):
     with open(filename, 'wb') as encrypted_file:
         encrypted_file.write(encrypted)
     
-    return '[+] File correctely encrypted!'
+    return '[+] File encrypted successfully!'
 
 
 def decrypt(filename, key):
@@ -51,7 +54,7 @@ def decrypt(filename, key):
     with open(filename, 'wb') as dec_file:
         dec_file.write(decrypted)
     
-    return '[+] File correctely encrypted!'
+    return '[+] File dencrypted successfully!'
 
 
 def main():
@@ -60,17 +63,18 @@ def main():
     if int(choice) == 1:
             keyname = input('[*] Save key file as :\n>>> ')
             generate_key(keyname)
+            main() 
     if int(choice)==2:
             key = input('[*] Put key path:\n>>>')
             filepath = input('[*] Put the path of the file to be encrypted:\n>>> ')
             encrypt(filepath, key)
-            
+            sleep(2) 
             exit()
     if int(choice)==3:
             key = input('[*] Put key path:\n>>>')
             filepath = input('[*] Put the path of the file to be dencrypted:\n>>> ')
             decrypt(filepath, key)
-            
+            sleep(2) 
             exit()
     #except Exception as e:
         #print(e)
