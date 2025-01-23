@@ -1,0 +1,5 @@
+---
+serial_port: COM5
+host_name: LoRa 02
+remote_host: LoRa 01
+...
